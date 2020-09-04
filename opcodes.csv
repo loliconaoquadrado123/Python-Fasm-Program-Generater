@@ -1,0 +1,8 @@
+mov,2,,
+add,2,,
+sub,2,,
+div,2,,
+include,1,,
+jmp,1,,
+push,1,,
+pop,1,,
