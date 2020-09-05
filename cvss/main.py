@@ -2,6 +2,24 @@ import csv
 import random
 import time
 
+Config={
+    "MaxLength":999999999,
+    "Size":100,
+    "count":0
+}
+
+
+PropertiesOfMnemonics={
+    "ids":{
+        "mnemonic":0,
+        "argsNumber":1,
+        "id":2
+    },
+    "count":0    
+    
+    }
+count=0
+
 def readCvs(filename):
     with open('cvss/opcodes.csv',"r+") as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
@@ -10,9 +28,8 @@ def readCvs(filename):
             csvFile.append(i)
         return csvFile
 CSV=readCvs("CVSOpcodes.csv")
-
 def compile(data):
-    config=Configuration([999999999,10],)
+    
     mnemonics=[]
     for a in range(len(data)):
         mnemonic=data[a][0]
@@ -28,29 +45,28 @@ def compile(data):
             mnemonics.append(CVSOpcode+" "+str(args[0])+","+str(args[1]))
             mnemonics.append(CVSOpcode)
             print(mnemonic)
-    Write("asm/compiled.asm","w+")
-def Write(filename,mode):
-    with open(filename,mode) as out:
-    header="format pe\n section '.text' code readable executable\n public start as '_start'\n"
-    out.write(header)
-    for i in range(len(mnemonics)):
-        out.write(mnemonics[i]+'\n')
+        
+    with open("asm/compiled.asm","w+") as out:
+        header="format pe\n"
+        out.write(header)
+        for i in range(len(mnemonics)):
+            out.write(mnemonics[i]+'\n')
+            
        
 #0=string 1=int=hex 2 
 
 
 def main():
-    
     lines=[]
     ArgsNumber=2
-    for a in range(config["Size"]):
+    for a in range(Config["Size"]):
         
         line=random.randint(0,len(CSV)-1)
         
         Args=[]
         
-        for b in range(config["ArgsNumber"):
-            Args.append(random.randint(0,int(readCvs("A")[0][1]:)))
+        for b in range(ArgsNumber):
+            Args.append(random.randint(0,int(Config["MaxLength"])))
         lines.append([line,Args])
         
     compile(lines)
